@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> Blank </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="formulario" (ngSubmit)="submitForm()">
+    <ion-item>
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input formControlName="name" required></ion-input>
+    </ion-item>
+    <span
+      *ngIf="(formulario.get('name').dirty || formulario.get('name').touched) && (formulario.controls.name.errors?.required)"
+      >Nome é necessario</span
+    >
+
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input formControlName="email" required></ion-input>
+    </ion-item>
+    <span
+      *ngIf="(formulario.get('email').dirty || formulario.get('email').touched) && (formulario.controls.email.errors?.required)"
+      >Nome é necessario</span
+    >
+    <span
+      *ngIf="(formulario.get('email').dirty || formulario.get('email').touched) && (formulario.controls.email.errors?.pattern)"
+      >Email invalido</span
+    >
+
+    <div formGroup="matchingPassword">
+      <ion-item>
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input formControlName="senha" required></ion-input>
+      </ion-item>
+      <span *ngIf="(formulario.controls.senha.errors?.senha)">Nome é necessario</span>
+
+      <ion-item>
+        <ion-label position="floating">Confirme a senha</ion-label>
+        <ion-input formControlName="confirmPassword" required></ion-input>
+      </ion-item>
+    </div>
+
+    <ion-button type="submit" expand="block" [disabled]="!formulario.valid"
+      >Submeter</ion-button
+    >
+  </form>
+</ion-content>
